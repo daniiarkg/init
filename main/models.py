@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.db import models
-from random import choice
+from random import randint
 
 TYPE_CHOICES = [('1','Цветок'),('2', 'Кактус'),('3','Корнеплод'),]
 STATUS_CHOICES = [('1','Стабильно'),('2','Требуется осмотр'),('3','Критическое')]
@@ -29,6 +29,7 @@ class Report(models.Model):
     date = models.DateTimeField(verbose_name='Дата', null=True, default=timezone.now)
     status = models.CharField(verbose_name='Статус', blank=True, max_length=1, choices=STATUS_CHOICES)
     photo = models.ImageField(verbose_name='Фото', upload_to='main', null=True)
+    humidity = models.IntegerField(verbose_name='Влажность (в %)', default=randint(20,40))
 
     class Meta:
         verbose_name = 'Отчёт'
