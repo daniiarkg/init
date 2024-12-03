@@ -27,7 +27,7 @@ class PlantAdmin(admin.ModelAdmin):
         instances = formset.save(commit=False)
         for instance in instances:
                 # instance.photo = photo_report
-            instance.status = choice(STATUS_CHOICES)[0]
+            instance.status = STATUS_CHOICES[0][0]
             instance.save()
             formset.save_m2m()
 
